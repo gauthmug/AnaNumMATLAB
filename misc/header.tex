@@ -52,7 +52,7 @@
 
 
 \newcommand{\MAT}{\textsc{MATLAB} }
-
+\setlength\parindent{0pt}
 
 
 
@@ -71,15 +71,27 @@
 \newtheorem{example}{Example}
 
 
-%% counter
+%% counter for ex
 
-\renewcommand{\thesection}{Exercice \Alph{section} :}
-\newcommand\subsectionStyle[1]{\textbf{\large \underline{#1}}}
+\renewcommand{\thesection}{Exercice \Alph{section}}
+\newcommand\subsectionStyle[1]{\textbf{#1}}
+
+\newcounter{Exercice}[section]
+\newenvironment{ex}{
+    \stepcounter{Exercice} 
+    \subsectionStyle{Exercice\Alph{section} \theExercice} \par
+}{\vspace{1cm}}
+
+%% counter for sol
+
+\renewcommand{\thesection}{Solution \Alph{section}}
+
+\newcounter{Solution}[section]
+\newenvironment{sol}{
+    \stepcounter{Solution} 
+    \subsectionStyle{Solution\Alph{section} \theSolution} \par
+}{\vspace{1cm}}
 
 
-\newcounter{exerc}[section]
-\newenvironment{Enonce}{
-\stepcounter{Exerc}\vspace{0.4cm}
-\subsectionStyle{Exercise \Alph{section}\theExerc}\begin{framed}}
-{\end{framed}\subsectionStyle{Resolution}  \vspace{0.3 cm}}
+
 
