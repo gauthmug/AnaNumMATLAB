@@ -24,6 +24,7 @@
 \usepackage{tikz,pgfplots}
 \usepackage{wrapfig}
 \usepackage{color}
+\usepackage{bm}
 \usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
 
 
@@ -39,6 +40,8 @@
 
 \newcommand{\Norm}{\mathcal{N}}
 \newcommand{\EL}{\mathcal{L}}
+\newcommand\LRA{\Leftrightarrow \ }
+
 
 
 \newcommand\parent[1]{\left(#1\right)}
@@ -46,6 +49,9 @@
 \newcommand\norm[1]{\left\lVert#1\right\rVert}
 \newcommand\bracket[1]{\left\{#1\right\}}
 \newcommand\squared[1]{\left[#1\right]}
+
+
+\newcommand{\MAT}{\textsc{MATLAB} }
 
 
 
@@ -63,4 +69,17 @@
 \newtheorem{notation}{Notation}[definition]
 \newtheorem{axiom}{Axiom}
 \newtheorem{example}{Example}
+
+
+%% counter
+
+\renewcommand{\thesection}{Exercice \Alph{section} :}
+\newcommand\subsectionStyle[1]{\textbf{\large \underline{#1}}}
+
+
+\newcounter{exerc}[section]
+\newenvironment{Enonce}{
+\stepcounter{Exerc}\vspace{0.4cm}
+\subsectionStyle{Exercise \Alph{section}\theExerc}\begin{framed}}
+{\end{framed}\subsectionStyle{Resolution}  \vspace{0.3 cm}}
 
