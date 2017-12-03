@@ -6,7 +6,7 @@
   N = 20; h = 1/N;
   x = linspace(h, 1-h, N-1)'; 
   b = f(x);
-  A = (N-2)*(diag(2*ones(N-1, 1),0) - diag(ones(N-2,1) - diag(ones(N-2,1),-1));
+  A = (N-2)*(diag(2*ones(N-1, 1),0) - diag(ones(N-2,1),1) - diag(ones(N-2,1),-1));
 \end{verbatim}
         
         Ensuite, on calcule la factorisation $LU$ de $A$.
@@ -44,8 +44,8 @@
         
   \item On trouve
   
-        \lstinputlisting{s3/matlab/ex2_dir.m}
-        \lstinputlisting{s3/matlab/ex2_retro.m}
+        \lstinputlisting{s3/matlab/subs_directe.m}
+        \lstinputlisting{s3/matlab/subs_retrograde.m}
         
         D'après le cours, on exploite la factorisation $LU$ de la façon suivante :
         
@@ -64,18 +64,14 @@ u = subs_retrograde(U,y);
           \end{equation*}},
         on a $u \parent{x} = x^{4} / 12 - x^{3} / 6 + x / 12$.
         On a ajouté le graphe de $u \parent{x}$ afin de montrer qu'avec $N = 20$ sous-intervalles, on obtient déjà une solution approchée assez précise.
-        La Figure \ref{fig:solExacte} a été obtenue par les commandes :
+        La Figure \ref{fig:solExacte} a été obtenue par le script \texttt{ex2exact.m} suivant.
         
-\begin{verbatim}
-u_exact = 'x.^4 / 12 - x.^3 / 6 + x / 12';
-fplot(u_exact, [0,1]);
-hold on;  
-plot(x, u, 'or');
-\end{verbatim}
+        \lstinputlisting{s3/matlab/ex2exact.m}
+        
         
 \begin{figure}[h!]
   \centering
-  %\includegraphics[scale = 0.2]{s3/images/ressort.png}
+  \includegraphics[scale = 0.5]{s3/matlab/ex2_uexact.eps}
   \caption{Solution exacte $u \parent{x}$ et déplacements approchés $u_{i}$}
   \label{fig:solExacte}
 \end{figure}
@@ -111,6 +107,10 @@ N = 120: K(A) = 5.835434e+03
 \end{verbatim} 
 
     Le graphe de $K \parent{A}$ en fonction de $N$ (commande \texttt{plot([10:10:120], k))} et le graphe bi-logarithmique (commande \texttt{loglog([10:10:120],k); grid on}) sont affichés en Figure \ref{fig:cond}.
+    On peut trouver cette figure avec le script \texttt{ex2bilog.m}.
+    
+    \lstinputlisting{s3/matlab/ex2bilog.m}
+    
     On voit que le graphe bi-logarithmique est bien celui d'une droite, donc du type
     
     \begin{equation*}
@@ -134,8 +134,18 @@ C =
 \end{verbatim} 
 
 \begin{figure}[h!]
-  \centering
-  %\includegraphics[scale = 0.2]{s3/images/ressort.png}
+  \begin{subfigure}[b]{0.5\linewidth}
+    \centering
+    \includegraphics[scale=0.4]{s3/matlab/ex2_lin} 
+    %\caption{Interpolation of $f$ using NCS \\ with $8+2$ points} 
+    %\label{fig:q11_n8} 
+  \end{subfigure}
+  \begin{subfigure}[b]{0.5\linewidth}
+    \centering
+    \includegraphics[scale=0.4]{s3/matlab/ex2_log} 
+    %\caption{Interpolation of $f$ using NCS \\ with $8+2$ points} 
+    %\label{fig:q11_n8} 
+  \end{subfigure} 
   \caption{Nombre de conditionnement $K \parent{A}$ en fonction de $N$, graphes linéaire (à gauche) et bi-logarithmique (à droite)}
   \label{fig:cond}
 \end{figure}
